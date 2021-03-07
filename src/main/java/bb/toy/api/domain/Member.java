@@ -42,6 +42,6 @@ public class Member {
 
     private int enable;
 
-    //@OneToMany(mappedBy = "member")
-    //private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 }

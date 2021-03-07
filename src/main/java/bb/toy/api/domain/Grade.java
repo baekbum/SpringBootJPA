@@ -27,9 +27,12 @@ public class Grade {
         } else if (id.equals("S")) {
             this.name = "실버";
             this.discount = 20;
-        } else {
+        } else if (id.equals("G")){
             this.name = "골드";
             this.discount = 30;
+        } else {
+            this.name = "관리자";
+            this.discount = 100;
         }
     }
 }

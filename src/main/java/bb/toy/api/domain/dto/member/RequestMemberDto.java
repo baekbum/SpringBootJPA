@@ -1,10 +1,12 @@
-package bb.toy.api.domain.dto;
+package bb.toy.api.domain.dto.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
 @Data
+@AllArgsConstructor
 public class RequestMemberDto {
 
     @NotEmpty

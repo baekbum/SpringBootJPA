@@ -1,4 +1,3 @@
-/*
 package bb.toy.api.domain;
 
 import lombok.Getter;
@@ -23,4 +22,3 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery")
     private Order order;
 }
-*/
