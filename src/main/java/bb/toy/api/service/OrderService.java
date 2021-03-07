@@ -1,6 +1,8 @@
+/*
 package bb.toy.api.service;
 
 import bb.toy.api.domain.Order;
+import bb.toy.api.dto.order.RequestOrderDto;
 import bb.toy.api.repository.iface.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public Long addOrder(Order order) {
-        orderRepository.addOrder(order);
-        return order.getId();
+    public Long addOrder(RequestOrderDto RequestOrderDto) {
+
+
+       // orderRepository.addOrder(order);
+        return 0L;
     }
 
     public Order findOrder(Long id) { // 주문번호 id
@@ -23,4 +27,15 @@ public class OrderService {
         return findOrder;
     }
 
+    // DTO -> Member Entity 변환
+    //private Order mappingOrderItem(RequestOrderDto requestOrderDto, String status) {
+    //    Order order = new Order();
+    //
+    //    orderItem.
+    //
+    //    return orderItem;
+    //}
+
 }
+
+ */

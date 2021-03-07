@@ -1,16 +1,17 @@
-/*
 package bb.toy.api.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
 @SequenceGenerator(name = "ORDER_ITEM_SEQ_GENERATOR", sequenceName = "ORDER_ITEM_SEQ", initialValue = 1, allocationSize = 1)
 public class OrderItem {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ITEM_SEQ_GENERATOR")
+    @Column(name = "order_item_id")
     private Long id;
     private Long price;
     private int count;
@@ -23,4 +24,3 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 }
-*/

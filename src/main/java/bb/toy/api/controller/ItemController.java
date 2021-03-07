@@ -1,9 +1,9 @@
 package bb.toy.api.controller;
 
 import bb.toy.api.domain.Item;
-import bb.toy.api.domain.dto.item.RequestItemDto;
-import bb.toy.api.domain.dto.item.ResponseItemDto;
-import bb.toy.api.domain.dto.item.ResultItemDto;
+import bb.toy.api.dto.item.RequestItemDto;
+import bb.toy.api.dto.item.ResponseItemDto;
+import bb.toy.api.dto.item.ResultItemDto;
 import bb.toy.api.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

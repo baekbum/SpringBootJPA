@@ -14,25 +14,30 @@ public class Grade {
     private String name;
     private int discount;
 
-    protected Grade() {
-    }
+    public static Grade addGrade(String id) {
+        Grade grade = new Grade();
+        String name = "";
+        int discount = 0;
 
-    public Grade(String id) {
-
-        this.id = id;
+        grade.setId(id);
 
         if (id.equals("B")) {
-            this.name = "브론즈";
-            this.discount = 10;
+            name = "브론즈";
+            discount = 10;
         } else if (id.equals("S")) {
-            this.name = "실버";
-            this.discount = 20;
+            name = "실버";
+            discount = 20;
         } else if (id.equals("G")){
-            this.name = "골드";
-            this.discount = 30;
+            name = "골드";
+            discount = 30;
         } else {
-            this.name = "관리자";
-            this.discount = 100;
+            name = "관리자";
+            discount = 100;
         }
+
+        grade.setName(name);
+        grade.setDiscount(discount);
+
+        return grade;
     }
 }

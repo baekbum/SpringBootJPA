@@ -1,4 +1,4 @@
-package bb.toy.api.domain.dto.member;
+package bb.toy.api.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +22,11 @@ public class RequestMemberDto {
     private String tel;
 
     @NotEmpty
-    private String grade;
+    private String gradeId;
 
     private String city;
     private String street;
     private String zipcode;
+
+    private int enable;
 }

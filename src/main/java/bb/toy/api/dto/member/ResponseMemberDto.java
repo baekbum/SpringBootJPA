@@ -1,4 +1,4 @@
-package bb.toy.api.domain.dto.member;
+package bb.toy.api.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +10,8 @@ public class ResponseMemberDto {
     private String id;
     private String name;
     private String tel;
-    private String grade;
+    private String gradeId;
+    private String gradeName;
+    private int discount;
 
 }

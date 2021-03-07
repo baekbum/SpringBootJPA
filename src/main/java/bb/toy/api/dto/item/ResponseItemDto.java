@@ -1,4 +1,4 @@
-package bb.toy.api.domain.dto.item;
+package bb.toy.api.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

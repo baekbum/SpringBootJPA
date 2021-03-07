@@ -1,20 +1,19 @@
 package bb.toy.api.domain;
 
+import bb.toy.api.dto.member.RequestMemberDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
-//@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR", sequenceName = "MEMBER_SEQ", initialValue = 1, allocationSize = 1)
 public class Member {
-
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
-    //private Long idx;
 
     @Id
     @Column(name = "member_id")
@@ -44,4 +43,23 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    public static Member addMember(RequestMemberDto dto, String status) {
+        Member member = new Member();
+
+        member.setId(dto.getId());
+        member.setPassword(dto.getPassword());
+        member.setName(dto.getName());
+        member.setTel(dto.getTel());
+        member.setGrade(Grade.addGrade(dto.getGradeId()));
+        member.setAddress(new Address(dto.getCity(), dto.getStreet(), dto.getZipcode()));
+        member.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        if (status.equals("C")) {
+            member.setCreateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            member.setEnable(0);
+        }
+
+        return member;
+    }
 }

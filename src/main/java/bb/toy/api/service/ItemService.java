@@ -1,7 +1,7 @@
 package bb.toy.api.service;
 
 import bb.toy.api.domain.Item;
-import bb.toy.api.domain.dto.item.RequestItemDto;
+import bb.toy.api.dto.item.RequestItemDto;
 import bb.toy.api.repository.iface.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class ItemService {
 
     @Transactional(readOnly = false)
     public Long save(RequestItemDto requestItemDto) {
-        Item item = mappingItem(requestItemDto, "C");
+        Item item = Item.addItem(requestItemDto, "C");
 
         itemRepository.addItem(item);
         return item.getId();
@@ -43,7 +43,7 @@ public class ItemService {
 
     @Transactional(readOnly = false)
     public void update(RequestItemDto requestItemDto) {
-        Item item = mappingItem(requestItemDto, "U");
+        Item item = Item.addItem(requestItemDto, "U");
 
         Item findItem = itemRepository.findItem(item.getId());
         findItem.setName(item.getName());
@@ -55,23 +55,5 @@ public class ItemService {
     @Transactional(readOnly = false)
     public void delete(Long id) {
         itemRepository.deleteItem(id);
-    }
-
-    // DTO -> Item Entity 변환
-    private Item mappingItem(RequestItemDto requestItemDto, String status) {
-        Item item = new Item();
-
-        if (status.equals("C")) {
-            item.setCreateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        } else {
-            item.setId(requestItemDto.getId());
-        }
-
-        item.setName(requestItemDto.getName());
-        item.setPrice(requestItemDto.getPrice());
-        item.setStockQuantity(requestItemDto.getStockQuantity());
-        item.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-
-        return item;
     }
 }

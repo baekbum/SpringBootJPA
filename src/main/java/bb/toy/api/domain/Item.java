@@ -1,9 +1,13 @@
 package bb.toy.api.domain;
 
+import bb.toy.api.dto.item.RequestItemDto;
+import bb.toy.api.dto.member.RequestMemberDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter @Setter
@@ -23,4 +27,21 @@ public class Item {
 
     //@JoinColumn(name = "category_id")
     //private Category category;
+
+    public static Item addItem(RequestItemDto dto, String status) {
+        Item item = new Item();
+
+        if (status.equals("C")) {
+            item.setCreateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        } else {
+            item.setId(dto.getId());
+        }
+
+        item.setName(dto.getName());
+        item.setPrice(dto.getPrice());
+        item.setStockQuantity(dto.getStockQuantity());
+        item.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+        return item;
+    }
 }

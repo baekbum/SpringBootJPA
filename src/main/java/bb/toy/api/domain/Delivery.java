@@ -1,11 +1,12 @@
 package bb.toy.api.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Setter @Getter
 @SequenceGenerator(name = "DELIVERY_SEQ_GENERATOR", sequenceName = "DELIVERY_SEQ", initialValue = 1, allocationSize = 1)
 public class Delivery {
 

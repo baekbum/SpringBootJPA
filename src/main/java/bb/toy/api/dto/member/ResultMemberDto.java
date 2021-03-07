@@ -1,4 +1,4 @@
-package bb.toy.api.domain.dto.member;
+package bb.toy.api.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
