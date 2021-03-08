@@ -44,4 +44,18 @@ public class Item {
 
         return item;
     }
+
+    public void addStock(int count) {
+        stockQuantity += count;
+    }
+
+    public void removeStock(int count) {
+        int stock = stockQuantity - count;
+
+        if (stock < 0 ) {
+            throw new IllegalStateException("재고가 부족합니다.");
+        }
+
+        stockQuantity = stock;
+    }
 }

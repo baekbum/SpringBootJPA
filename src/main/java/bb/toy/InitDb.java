@@ -1,7 +1,9 @@
 package bb.toy;
 
 import bb.toy.api.domain.Grade;
+import bb.toy.api.domain.Item;
 import bb.toy.api.domain.Member;
+import bb.toy.api.dto.item.RequestItemDto;
 import bb.toy.api.dto.member.RequestMemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,7 @@ public class InitDb {
     public void Init() {
         initService.Grade();
         initService.Member();
+        initService.Item();
     }
 
     @Component
@@ -47,6 +50,14 @@ public class InitDb {
 
             em.persist(member1);
             em.persist(member2);
+        }
+
+        public void Item() {
+            Item item1 = Item.addItem(new RequestItemDto(null, "JPA", 20000, 100), "C");
+            Item item2 = Item.addItem(new RequestItemDto(null, "Spring", 15000, 100), "C");
+
+            em.persist(item1);
+            em.persist(item2);
         }
     }
 }

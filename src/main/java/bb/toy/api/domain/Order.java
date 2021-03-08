@@ -37,7 +37,8 @@ public class Order {
     private String updateDate;
 
     public void addMember(Member member) {
-        this.member = member;
+        setMember(member);
+        //this.member = member;
         member.getOrders().add(this);
     }
 
@@ -47,11 +48,12 @@ public class Order {
     }
 
     public void addDelivery(Delivery delivery) {
-        this.delivery = delivery;
+        setDelivery(delivery);
+        //this.delivery = delivery;
         delivery.setOrder(this);
     }
 
-    public Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
 
         order.addMember(member);
@@ -66,5 +68,13 @@ public class Order {
         order.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         return order;
+    }
+
+    public void cancelOrder() {
+        if (delivery.getDeliveryStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("배송 중인 상품은 취소가 불가능합니다.");
+        }
+
+        setOrderStatus(OrderStatus.CANCEL);
     }
 }

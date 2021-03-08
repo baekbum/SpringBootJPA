@@ -9,7 +9,6 @@ public class RequestOrderDto {
     private Long orderId;
 
     private Long itemId;
-    private int price;
     private int count;
 
     private String city;

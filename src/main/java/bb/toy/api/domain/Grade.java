@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Grade {
     @Id
     @Column(name = "grade_id")
-    private String id; // B,S,G
+    private String id; // B,S,G,A
     @Column(name = "grade_name")
     private String name;
     private int discount;

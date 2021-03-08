@@ -1,6 +1,7 @@
 package bb.toy.api.domain;
 
 import bb.toy.api.dto.member.RequestMemberDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +42,7 @@ public class Member {
 
     private int enable;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
