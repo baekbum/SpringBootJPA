@@ -10,6 +10,6 @@ public interface OrderRepository {
 
     public Order findOrder(Long id); // 주문번호 id
 
-    public List<Order> findOrders(String id); // member id
+    public List<Order> findOrderByMember(String id); // member id
 
 }

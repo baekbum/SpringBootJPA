@@ -28,19 +28,19 @@ public class ItemController {
     @GetMapping("/api/item/{id}")
     public ResponseItemDto findItem(@PathVariable("id") Long id) {
         Item findItem = itemService.findItem(id);
-        ResponseItemDto responseItemDto = new ResponseItemDto(findItem.getId(), findItem.getName(), findItem.getPrice(), findItem.getStockQuantity());
+        ResponseItemDto dto = new ResponseItemDto(findItem);
 
-        return responseItemDto;
+        return dto;
     }
 
     @GetMapping("/api/item/all")
     public ResultItemDto findItems() {
         List<Item> items = itemService.findAll();
-        List<ResponseItemDto> responseItemDtos = items.stream()
-                                                      .map(o -> new ResponseItemDto(o.getId(), o.getName(), o.getPrice(), o.getStockQuantity()))
-                                                      .collect(Collectors.toList());
+        List<ResponseItemDto> dtos = items.stream()
+                                          .map(o -> new ResponseItemDto(o))
+                                          .collect(Collectors.toList());
 
-        return new ResultItemDto(responseItemDtos.size(), responseItemDtos);
+        return new ResultItemDto(dtos.size(), dtos);
     }
 
     @PutMapping("/api/item")

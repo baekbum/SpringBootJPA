@@ -6,8 +6,11 @@ import bb.toy.api.repository.iface.ItemRepository;
 import bb.toy.api.repository.iface.MemberRepository;
 import bb.toy.api.repository.iface.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,5 +40,10 @@ public class OrderService {
     public Order findOrder(Long id) { // 주문번호 id
         Order findOrder = orderRepository.findOrder(id);
         return findOrder;
+    }
+
+    public List<Order> findOrderByName(String id) {
+        List<Order> orders = orderRepository.findOrderByMember(id);
+        return orders;
     }
 }

@@ -1,7 +1,9 @@
 package bb.toy.api.repository.impl;
 
 import bb.toy.api.domain.Order;
+import bb.toy.api.domain.QOrder;
 import bb.toy.api.repository.iface.OrderRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +27,13 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public List<Order> findOrders(String id) {
-        return null;
+    public List<Order> findOrderByMember(String id) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " where m.id = :id", Order.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 
 }

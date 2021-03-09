@@ -30,9 +30,9 @@ public class MemberController {
     // 1건 조회
     @GetMapping("/api/member/{id}")
     public ResponseMemberDto findMember(@PathVariable("id") String id) {
-        Member m = memberService.findById(id);
+        Member member = memberService.findById(id);
 
-        ResponseMemberDto memberDto = new ResponseMemberDto(m.getId(), m.getName(), m.getTel(), m.getGrade().getId(), m.getGrade().getName(), m.getGrade().getDiscount());
+        ResponseMemberDto memberDto = new ResponseMemberDto(member);
 
         return memberDto;
     }
@@ -41,11 +41,11 @@ public class MemberController {
     @GetMapping("/api/member/all")
     public ResultMemberDto findMembers() {
         List<Member> members = memberService.findAll();
-        List<ResponseMemberDto> memberDtos = members.stream()
-                                                    .map(o -> new ResponseMemberDto(o.getId(), o.getName(), o.getTel(), o.getGrade().getId(), o.getGrade().getName(), o.getGrade().getDiscount()))
+        List<ResponseMemberDto> dtos = members.stream()
+                                                    .map(o -> new ResponseMemberDto(o))
                                                     .collect(Collectors.toList());
 
-        return new ResultMemberDto(memberDtos.size(), memberDtos);
+        return new ResultMemberDto(dtos.size(), dtos);
     }
 
     // 수정
