@@ -6,7 +6,6 @@ import bb.toy.api.repository.iface.ItemRepository;
 import bb.toy.api.repository.iface.MemberRepository;
 import bb.toy.api.repository.iface.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +44,22 @@ public class OrderService {
     public List<Order> findOrderByName(String id) {
         List<Order> orders = orderRepository.findOrderByMember(id);
         return orders;
+    }
+
+    @Transactional(readOnly = false)
+    public void cancelOrder(Long id) {
+        Order order = orderRepository.findOrder(id);
+
+        if (!order.getDelivery().getDeliveryStatus().equals(DeliveryStatus.READY)) {
+            throw new IllegalStateException("이미 배송된 상품은 취소할 수 없습니다.");
+        }
+
+        order.setOrderStatus(OrderStatus.CANCEL);
+
+        List<OrderItem> orderItems = order.getOrderItems();
+
+        for(OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
     }
 }
