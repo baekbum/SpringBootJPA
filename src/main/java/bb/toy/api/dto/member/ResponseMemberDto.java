@@ -1,25 +1,37 @@
 package bb.toy.api.dto.member;
 
 import bb.toy.api.domain.Member;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 public class ResponseMemberDto {
-
-    private String id;
+    private Long id;
     private String name;
     private String tel;
-    private String gradeId;
-    private String gradeName;
-    private int discount;
+    private String address;
+    private String rankId;
+    private String rankName;
+    private String positionId;
+    private String positionName;
+    private String teamId;
+    private String teamName;
+    private String createDate;
+    private String updateDate;
+    private String isRetire;
 
     public ResponseMemberDto (Member member) {
         setId(member.getId());
         setName(member.getName());
         setTel(member.getTel());
-        setGradeId(member.getGrade().getId());
-        setGradeName(member.getGrade().getName());
-        setDiscount(member.getGrade().getDiscount());
+        setAddress(member.getAddress());
+        setRankId(member.getRank().getId());
+        setRankName(member.getRank().getName());
+        setPositionId(member.getPosition().getId());
+        setPositionName(member.getPosition().getName());
+        setTeamId(member.getTeam().getId());
+        setTeamName(member.getTeam().getName());
+        setCreateDate(member.getCreateDate());
+        setUpdateDate(member.getUpdateDate());
+        setIsRetire(member.getIsRetire());
     }
 }

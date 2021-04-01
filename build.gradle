@@ -35,6 +35,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+	implementation 'org.springframework.boot:spring-boot-starter-security' // 시큐리티를 위해 추가
+	implementation 'io.jsonwebtoken:jjwt:0.9.1' // 시큐리티를 위해 추가
 	// implementation 'org.hibernate:hibernate-core:5.4.13.Final'
 
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
@@ -48,6 +50,7 @@ dependencies {
 	testImplementation("org.junit.vintage:junit-vintage-engine") {
 		exclude group: "org.hamcrest", module: "hamcrest-core"
 	}
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	//querydsl 추가
 	implementation 'com.querydsl:querydsl-jpa'

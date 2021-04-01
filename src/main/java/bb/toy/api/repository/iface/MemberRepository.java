@@ -1,18 +1,23 @@
 package bb.toy.api.repository.iface;
 
 import bb.toy.api.domain.Member;
-import org.springframework.stereotype.Component;
+import bb.toy.api.domain.Position;
+import bb.toy.api.domain.Rank;
+import bb.toy.api.domain.Team;
+import bb.toy.api.dto.member.SearchCondMember;
 
 import java.util.List;
+import java.util.Optional;
 
-//@Component
 public interface MemberRepository {
 
-    public void saveMember(Member member);
+    void saveMember(Member member);
 
-    public Member findMember(String id);
+    Optional<Member> findById(Long id);
 
-    public List<Member> findMembers();
+    Long findMembersCount(SearchCondMember searchCondMember);
 
-    public void deleteMember(String id);
+    List<Member> findMembers(SearchCondMember searchCondMember);
+
+    void deleteMember(Long id);
 }

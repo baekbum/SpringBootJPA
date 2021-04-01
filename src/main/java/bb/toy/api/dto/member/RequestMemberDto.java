@@ -6,27 +6,19 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@AllArgsConstructor
 public class RequestMemberDto {
-
-    @NotEmpty
-    private String id;
-
-    @NotEmpty
-    private String password;
-
+    private Long id;
     @NotEmpty
     private String name;
-
     @NotEmpty
+    private String password;
     private String tel;
-
+    private String address;
     @NotEmpty
-    private String gradeId;
-
-    private String city;
-    private String street;
-    private String zipcode;
-
-    private int enable;
+    private String rankId;
+    @NotEmpty
+    private String positionId;
+    @NotEmpty
+    private String teamId;
+    private String isRetire;
 }

@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ResultMemberDto<T> {
-    private int count;
+    private Long count;
     private T data;
 }
