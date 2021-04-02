@@ -58,18 +58,22 @@ public class MemberController {
     }
 
     // 수정
-    @PutMapping("/api/member")
-    public void updateMember(@RequestBody @Valid RequestMemberDto requestMemberDto) {
+    @PutMapping("/api/member/{id}")
+    public Long updateMember(@PathVariable("id") Long id, @RequestBody @Valid RequestMemberDto requestMemberDto) {
         authProcessService.authCheck(SecurityContextHolder.getContext().getAuthentication());
 
-        memberService.update(requestMemberDto);
+        memberService.update(id, requestMemberDto);
+
+        return id;
     }
 
     // 삭제
     @DeleteMapping("/api/member/{id}")
-    public void deleteMember(@PathVariable("id") Long id) {
+    public Long deleteMember(@PathVariable("id") Long id) {
         authProcessService.authCheck(SecurityContextHolder.getContext().getAuthentication());
 
         memberService.delete(id);
+
+        return id;
     }
 }

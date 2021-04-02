@@ -77,7 +77,7 @@ public class MemberRepositoryImpl implements MemberRepository {
             return QMember.member.position.id.contains(searchCondMember.getSearchString());
         } else if (searchCondMember.getSearchCond().equals("TEAM")) {
             return QMember.member.team.id.contains(searchCondMember.getSearchString());
-        } else if (searchCondMember.getSearchCond().equals("Retire")) {
+        } else if (searchCondMember.getSearchCond().equals("RETIRE")) {
             return QMember.member.isRetire.eq(searchCondMember.getSearchString());
         } else {
             return null;

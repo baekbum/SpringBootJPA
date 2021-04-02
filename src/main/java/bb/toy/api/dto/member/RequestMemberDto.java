@@ -7,7 +7,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class RequestMemberDto {
-    private Long id;
     @NotEmpty
     private String name;
     @NotEmpty

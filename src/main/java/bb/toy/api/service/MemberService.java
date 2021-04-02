@@ -60,13 +60,13 @@ public class MemberService {
 
     // U
     @Transactional(readOnly = false)
-    public void update(RequestMemberDto dto) {
+    public void update(Long id, RequestMemberDto dto) {
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         Rank rank = commonRepository.findRank(dto.getRankId());
         Position position = commonRepository.findPosition(dto.getPositionId());
         Team team = commonRepository.findTeam(dto.getTeamId());
 
-        Member findMember = memberRepository.findById(dto.getId())
+        Member findMember = memberRepository.findById(id)
                                             .orElseThrow(() -> new IllegalStateException("사용자를 찾을 수 없습니다."));
         findMember.setName(dto.getName());
         findMember.setPassword(dto.getPassword());

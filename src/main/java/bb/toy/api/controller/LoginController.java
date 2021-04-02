@@ -28,7 +28,6 @@ public class LoginController {
     // 로그인
     @PostMapping("/api/auth/signIn")
     public HashMap<String, Object> login(@RequestBody RequestLoginDto requestLoginDto) {
-        System.out.println("여기 들어오냐");
         HashMap<String, Object> map = new HashMap<>();
         Member findMember = memberService.findById(Long.parseLong(requestLoginDto.getId()));
         ResponseMemberDto memberDto = new ResponseMemberDto(findMember);

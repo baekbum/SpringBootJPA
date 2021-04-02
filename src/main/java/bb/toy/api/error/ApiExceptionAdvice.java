@@ -2,6 +2,7 @@ package bb.toy.api.error;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -40,6 +41,14 @@ public class ApiExceptionAdvice {
         return ResponseEntity
                 .status(ExceptionEnum.NO_SUCH_ELEMENT_EXCEPTION.getStatus())
                 .body(new ApiExceptionEntity(ExceptionEnum.NO_SUCH_ELEMENT_EXCEPTION.getCode(), ExceptionEnum.NO_SUCH_ELEMENT_EXCEPTION.getMessage()));
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ResponseEntity<ApiExceptionEntity> exceptionHandler(HttpServletRequest request, final MethodArgumentNotValidException e) {
+        e.printStackTrace();
+        return ResponseEntity
+                .status(ExceptionEnum.METHOD_ARGUMENT_NOT_VALID_EXCEPTION.getStatus())
+                .body(new ApiExceptionEntity(ExceptionEnum.METHOD_ARGUMENT_NOT_VALID_EXCEPTION.getCode(), ExceptionEnum.METHOD_ARGUMENT_NOT_VALID_EXCEPTION.getMessage()));
     }
 
     @ExceptionHandler({Exception.class})
